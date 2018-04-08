@@ -68,7 +68,7 @@ Please evaluate the performance of the target sets with respect to the following
 1. Cell classificaiton performance
   a. Assess the ability to recover exact cluster classification of the simulated osmFISH cells. The method of classification itself is up to you. If you chose to use a learning-based method, please make sure to separate training and test sets.
   b. Assess the ability to recover broad cell classification within the cell cluster hierarchy. Distinguishing detailed cell subtype (e.g. In5 and In8 interneuron types) is harder than distinguishing major types (e.g. interneurons from pyramidal neurons). Because of that, we would like to compare different osmFISH target sets in their ability to provide broader classification of cells (in cases when the exact cell annotation cannot be determined). Derive a classification measure that takes into account the error of cell placement on the hierarchy (e.g. cophenetic distance between predicted and true class)
-        * For deriving layer2 cluster hierarchy, one can use the following [R script](zeisel.hierarchy.Rmd). 
+        * For deriving layer2 cluster hierarchy, one can use the following [R script](ziesel.hierarchy.Rmd). 
 
 2. Cluster recovery performance. Evaluate ability to recover cell clusters from osmFISH data (i.e. perform de-novo clustering of cells as measured by osmFISH, determine how well the resulting clusters correspond to the scRNA-seq cluster hierarchy).
 
