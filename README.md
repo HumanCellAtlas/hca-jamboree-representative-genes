@@ -1,13 +1,14 @@
 # hca-jamboree-representative-genes
 
 ## Datasets: 
-- Mouse scRNA-seq data from SC (Zeisel et al. 2015), 
-- Oligodendrocytes (Marques et al. 2016) and V1 clusters (Tasic et al. 2016). 
-- an example of spatial detection: osmFISH dataset (Linnarsson lab)
+- Mouse scRNA-seq data from SC ([Zeisel et al. 2015](http://science.sciencemag.org/content/early/2015/02/18/science.aaa1934)), 
+- Mouse Oligodendrocytes ([Marques et al. 2016](http://science.sciencemag.org/content/352/6291/1326)) 
+- Mouse V1 clusters ([Tasic et al. 2016](https://www.nature.com/articles/nn.4216)). 
+- Spatial detection: osmFISH dataset ([Codeluppi et al. 2018](https://www.biorxiv.org/content/early/2018/03/04/276097))
  
 ## Tasks:
 
-## 1. Design a model of spatial measurement efficiency
+## 1. Design a model of osmFISH measurement efficiency
 
 A model of spatial measurement efficiency simulates the number of detected transcripts in the cell in the context of a spatial measurement, given a set of genes and a cell of pre-defined expression profile. For the purpose of this task, we will assume that scRNA-seq data is close to ground truth in terms of expression.
 
