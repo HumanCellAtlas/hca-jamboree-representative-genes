@@ -20,15 +20,15 @@ Just like any other technique, osmFISH provides a sampling of the true transcrip
 
 ### Suggested route
 * Map osmFISH cell clusters to existing  scRNA-seq annotation or custom clusters
- * Define / extract clusters on Zeisel et al. and Marques et al. datasets
- * Use pooled osmFISH gene frequencies to find best matching clusters
+   * Define / extract clusters on Zeisel et al. and Marques et al. datasets
+   * Use pooled osmFISH gene frequencies to find best matching clusters
 * Examine osmFISH count distributions
- * as a function of scRNA-seq expression frequency in different clusters
- * as a function of scRNA-seq expression magnitude
- * variation of detection parameters (e.g. TP/FP) between different genes
+   * as a function of scRNA-seq expression frequency in different clusters
+   * as a function of scRNA-seq expression magnitude
+   * variation of detection parameters (e.g. TP/FP) between different genes
 * Build a predictor module
- * parameterize distributions
- * code implementation module for simulating osmFISH per-cell counts
+   * parameterize distributions
+   * code implementation module for simulating osmFISH per-cell counts
 
 
 ### Problems to be solved:
