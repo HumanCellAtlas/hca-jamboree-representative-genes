@@ -16,7 +16,8 @@ Some of the features of osmFISH transcript counts that you should consider:
 * Dropouts
 * Mis-assignment of transcript spots to adjacent cells
 
-### Deliverable: module simulating osmFISH per-cell transcript counts
+### Deliverable 
+A module simulating osmFISH per-cell transcript counts
 * Input 
    * Target gene panel
    * scRNA-seq data capturing a set of cells to be measured
@@ -36,37 +37,38 @@ Some of the features of osmFISH transcript counts that you should consider:
    * code implementation module for simulating osmFISH per-cell counts
 
  
-## Task 2. Find genes to optimize cell classification in spatial experiments
+## Task 2. Optimal selection of target gene panel for osmFISH
 
-Given scRNA-seq data and a set of pre-defined clusters, select genes for targeting by a spatial measurement that would optimize ability to recover classification of cells given a set of constraints. For example: 
+Given scRNA-seq data and a set of pre-defined clusters, the aim is to select genes for targeting by a spatial measurement that would optimize ability to recover classification of cells, as measured by osmFISH. 
 
-- fewer than N total genes 
-- restrictions on gene length 
-- gene expression magnitude? 
+We suggest to approach this task iteratively, starting with a very simple osmFISH measurement model, and then moving towards a model derived in Task 1. 
 
-### Task goals:
+### Deliverable 
+A module that will predict an optimal set of genes to target with osmFISH measurement.
+* Input
+   * scRNA-seq data representative of the tissue that will be measured
+   * cell clusters that we aim to distinguish or a cell cluster hierarchy (see below)
+   * target gene set size
+* Output
+   * A set of genes to target by osmFISH
 
-- optimize target gene selection under a perfect measurement model
-- optimize target gene selection under a simple failure model where there’s an X% probability that a particular gene will fail to be detected (?) in the spatial measurement. 
-- optimize target gene selection under the spatial measurement model derived in task 1.
-- optimize recovery of broad classes over leaves
-- calculate trade-off between cell type mapping resolution and robustness (i.e. use extra markers for redundancy vs. mapping to leaves)
-- order target gene selection based on mapping information provided (e.g. SLC17A7 may be considered more informative than CHODL since the former can map many cells into broad classes while the latter identifies only a small number of cells as a rare interneuron type)
+For the initial test step, determine an optimal target gene set for osmFISH measurement
+* Aiming to recover layer 1 clusters, as determined by Ziesel et al.
+* Limiting target set size to: 20, 30, 50 and 100 genes
+* Using naive perfect model of osmFISH measurmeent
+   * suggested sampling model: binomial subsampling of scRNA-seq molecules, using observed osmFISH cell sizes
 
-## Evaluation:
+For the final step, generate optimal target sets,
+* Aim to recover layer 2 clusters
+* Use osmFISH measurement model derived in Task 1
 
-Multiple teams will take part in the challenge, and they will be asked to evaluate cell recovery (Task 2) under each-other’s model (Task 1).
 
-### Evaluation metrics:
+### Evaluation
+Please evaluate the performance of the target sets with respect to the following features:
+1. Cell classificaiton performance
+  a. Assess the ability to recover exact cluster classification of the simulated osmFISH cells. The method of classification itself is up to you. If you chose to use a learning-based method, please make sure to separate training and test sets.
+  b. Assess the ability to recover broad cell classification within the cell cluster hierarchy. Distinguishing detailed cell subtype (e.g. In5 and In8 interneuron types) is harder than distinguishing major types (e.g. interneurons from pyramidal neurons). Because of that, we would like to compare different osmFISH target sets in their ability to provide broader classification of cells (in cases when the exact cell annotation cannot be determined). Derive a classification measure that takes into account the error of cell placement on the hierarchy (e.g. cophenetic distance between predicted and true class)
+        * For deriving layer2 cluster hierarchy, one can use the following [R script](zeisel.hierarchy.Rmd). 
 
-- scRNA-seq => select genes ⇒ generate FISH counts (ignore x,y coordinates) ⇒ evaluate consistency of structure with scRNA (clusters, in our case; similar to task 1)
+2. Cluster recovery performance. Evaluate ability to recover cell clusters from osmFISH data (i.e. perform de-novo clustering of cells as measured by osmFISH, determine how well the resulting clusters correspond to the scRNA-seq cluster hierarchy).
 
-- generate FISH counts:
-  - Clean model -- uniformly sample cells from scRNA-seq; downsample counts (binomial with a “good” fixed rate); report downsampled counts of the selected genes.
-  - Less clean model - vary the binomial loss rate
-  - Complete gene loss
-- Learn leakage and loss model:
-  - Assume 1-1 mapping of FISH/seq clusters
-  - “Ground truth” from single cell clusters (average, other stats)
-  - Compare to respective clusters from FISH
-- Consistency of the local neighborhood
