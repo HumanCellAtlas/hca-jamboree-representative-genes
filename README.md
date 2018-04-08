@@ -8,9 +8,28 @@
  
 ## Tasks:
 
-## 1. Design a model of osmFISH measurement efficiency
+## 1. Design a model of osmFISH measurement 
+Just like any other technique, osmFISH provides a sampling of the true transcription state. The aim of this exercise is to come up with a statistical description of counts that would be detected by an osmFISH measurement per cell. To approximate this, we will assume that the scRNA-seq data (from the matching tissue), aggregated across a specific cell subpopulation, provides a close approximation of the true transcriptome. 
 
-A model of spatial measurement efficiency simulates the number of detected transcripts in the cell in the context of a spatial measurement, given a set of genes and a cell of pre-defined expression profile. For the purpose of this task, we will assume that scRNA-seq data is close to ground truth in terms of expression.
+### Deliverable: module simulating osmFISH per-cell transcript counts
+* Input 
+ * Target gene panel
+ * scRNA-seq data capturing a set of cells to be measured
+* Output
+ * Per cell gene counts, as expected from detection by osmFISH 
+
+### Suggested route
+* Map osmFISH cell clusters to existing  scRNA-seq annotation or custom clusters
+ * Define / extract clusters on Zeisel et al. and Marques et al. datasets
+ * Use pooled osmFISH gene frequencies to find best matching clusters
+* Examine osmFISH count distributions
+ * as a function of scRNA-seq expression frequency in different clusters
+ * as a function of scRNA-seq expression magnitude
+ * variation of detection parameters (e.g. TP/FP) between different genes
+* Build a predictor module
+ * parameterize distributions
+ * code implementation module for simulating osmFISH per-cell counts
+
 
 ### Problems to be solved:
 
