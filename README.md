@@ -8,15 +8,20 @@
  
 ## Tasks:
 
-## 1. Design a model of osmFISH measurement 
+## Task 1. Design a model of osmFISH measurement 
 Just like any other technique, osmFISH provides a sampling of the true transcription state. The aim of this exercise is to come up with a statistical description of counts that would be detected by an osmFISH measurement per cell. To approximate this, we will assume that the scRNA-seq data (from the matching tissue), aggregated across a specific cell subpopulation, provides a close approximation of the true transcriptome. 
+
+Some of the features of osmFISH transcript counts that you should consider:
+* Cell size variation
+* Dropouts
+* Mis-assignment of transcript spots to adjacent cells
 
 ### Deliverable: module simulating osmFISH per-cell transcript counts
 * Input 
- * Target gene panel
- * scRNA-seq data capturing a set of cells to be measured
+   * Target gene panel
+   * scRNA-seq data capturing a set of cells to be measured
 * Output
- * Per cell gene counts, as expected from detection by osmFISH 
+   * Per cell gene counts, as expected from detection by osmFISH 
 
 ### Suggested route
 * Map osmFISH cell clusters to existing  scRNA-seq annotation or custom clusters
@@ -30,16 +35,8 @@ Just like any other technique, osmFISH provides a sampling of the true transcrip
    * parameterize distributions
    * code implementation module for simulating osmFISH per-cell counts
 
-
-### Problems to be solved:
-
-- Gene detection rates vary from one gene to another
-	- examine mean scRNA-seq vs. spatial counts
-- Transcripts in cell processes can be incorrectly assigned to neighboring cells after segmentation. For each gene, estimate the probability of false counts (should be inversely related to localization of transcripts to cell soma).
-	- dropout and leakage of transcripts
-	- look at examples of genes that are expected to have 0 spatial counts in specific cell types (based on scRNA-seq), but have some non-0 counts.
  
-## 2. Find genes to optimize cell classification in spatial experiments
+## Task 2. Find genes to optimize cell classification in spatial experiments
 
 Given scRNA-seq data and a set of pre-defined clusters, select genes for targeting by a spatial measurement that would optimize ability to recover classification of cells given a set of constraints. For example: 
 
