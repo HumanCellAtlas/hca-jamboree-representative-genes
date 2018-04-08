@@ -1,0 +1,55 @@
+---
+title: "Jamboree 2: SpaceTx task: Ziesel et al. hierarchy"
+output: html_notebook
+---
+
+Load Ziesel et al. mRNA data matrix
+```{r}
+require(data.table)
+scrna.dat <- as.data.frame(fread("expression_mRNA_17-Aug-2014.txt",skip=11,header=F))
+# extract gene names
+rownames(scrna.dat) <- scrna.dat[,1];
+# remove first two (non-count) columns
+scrna.dat <- scrna.dat[,-c(1,2)]
+# dimensions of the final matrix
+dim(scrna.dat)
+```
+
+Read in cell metadata
+```{r}
+scrna.mdat <- t(read.table("expression_mRNA_17-Aug-2014.txt",sep='\t',nrows=3,skip=7))
+colnames(scrna.mdat) <- scrna.mdat[2,]; 
+scrna.mdat <- data.frame(scrna.mdat[-c(1:2),],stringsAsFactors=F)
+head(scrna.mdat)
+```
+
+```{r}
+# assign cell names to the data matrix
+colnames(scrna.dat) <- scrna.mdat[,'cell_id']
+# level 2 class counts
+table(scrna.mdat$level2class)
+```
+
+
+We'll build hierarchy of clusters (suing 'complete' linkage) by pooling count data for each level 2 cluster, and calculating similarity between clusters using 1-r (Pearson correlation):
+
+```{r}
+# pool read counts across clusters
+scrna.pooled <- do.call(cbind,tapply(1:ncol(scrna.dat), as.factor(scrna.mdat$level2class), function(ii) {
+  rowSums(scrna.dat[,ii])
+}))
+
+# normalize and log transform
+lib.size.scale <- 1e4;
+scrna.pooled.norm <- log( t(t(scrna.pooled)/colSums(scrna.pooled)) * lib.size.scale +1);
+
+# calculate correlation distance
+scrna.pooled.norm.dist <- 1-cor(scrna.pooled.norm)
+
+# cluster
+scrna.pooled.hc <- hclust(as.dist(scrna.pooled.norm.dist), method='complete')
+
+# show clustering
+plot(scrna.pooled.hc)
+```
+
