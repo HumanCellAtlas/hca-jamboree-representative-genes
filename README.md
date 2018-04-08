@@ -73,3 +73,7 @@ Please evaluate the performance of the target sets with respect to the following
 
 2. Cluster recovery performance. Evaluate ability to recover cell clusters from osmFISH data (i.e. perform de-novo clustering of cells as measured by osmFISH, determine how well the resulting clusters correspond to the scRNA-seq cluster hierarchy).
 
+### Additional Information
+
+* [Example notebook demonstrating how to build the Zeisel hierarchy](https://cdn.rawgit.com/HumanCellAtlas/hca-jamboree-representative-genes/master/ziesel.hierarchy.nb.html)
+* [Slides with additional description of the task](https://docs.google.com/presentation/d/1wODQEw3ni53M5npjFuV8oe5PwgW2vJe-RVRZSBW8AMo/edit?usp=sharing)
