@@ -28,6 +28,7 @@ A module simulating osmFISH per-cell transcript counts
 * Map osmFISH cell clusters to existing  scRNA-seq annotation or custom clusters
    * Define / extract clusters on Zeisel et al. and Marques et al. datasets
    * Use pooled osmFISH gene frequencies to find best matching clusters
+   * See example of matching to published clusters [here](http://pklab.med.harvard.edu/peterk/hca/jamboree2/Cluster_Matching_Example.html). Matching to more granular clusters, and inclusion of the oligodendrocyte data may yield more certain results.
 * Examine osmFISH count distributions
    * as a function of scRNA-seq expression frequency in different clusters
    * as a function of scRNA-seq expression magnitude
