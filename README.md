@@ -1,5 +1,8 @@
 # hca-jamboree-representative-genes
 
+The aim of the task is to come up with a strategy for selecting target genes for spatial transcriptomic measurements. 
+Basic info about the task is given below. Please see the following [slides](https://docs.google.com/presentation/d/1wODQEw3ni53M5npjFuV8oe5PwgW2vJe-RVRZSBW8AMo/edit?usp=sharing) for the task introduction.
+
 ## Datasets: 
 - Mouse scRNA-seq data from SC ([Zeisel et al. 2015](http://science.sciencemag.org/content/early/2015/02/18/science.aaa1934)), 
 - Mouse Oligodendrocytes ([Marques et al. 2016](http://science.sciencemag.org/content/352/6291/1326)) 
@@ -58,6 +61,8 @@ For the initial test step, determine an optimal target gene set for osmFISH meas
 * Limiting target set size to: 20, 30, 50 and 100 genes
 * Using naive perfect model of osmFISH measurmeent
    * suggested sampling model: binomial subsampling of scRNA-seq molecules, using observed osmFISH cell sizes
+
+It might be useful to use imputed versions of the scRNA-seq data (cortex_full_impute.csv provides a version of Zeisel et al. data imputed with MAGIC).
 
 For the final step, generate optimal target sets,
 * Aim to recover layer 2 clusters
